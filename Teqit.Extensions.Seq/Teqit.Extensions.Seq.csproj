@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Teqit Extensions for SEQ</Title>
+    <Authors>Teqit, Laurens van Dijk</Authors>
+    <Company>Teqit</Company>
+    <Description>Microsft Dependency Injection extensions for SEQ</Description>
+    <PackageTags>msdi, seq, extensions, microsoft, dependency injection, logging</PackageTags>
+    <PackageReleaseNotes>Update readme and summary</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/DotNetLau</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>1.0.3</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
+    <PackageReference Include="Serilog.Enrichers.Process" Version="3.0.0" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
