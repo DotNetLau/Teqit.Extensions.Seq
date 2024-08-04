@@ -10,10 +10,10 @@
     <Company>Teqit</Company>
     <Description>Microsft Dependency Injection extensions for SEQ</Description>
     <PackageTags>msdi, seq, extensions, microsoft, dependency injection, logging</PackageTags>
-    <PackageReleaseNotes>Update readme and summary and add project URL.</PackageReleaseNotes>
+    <PackageReleaseNotes>Add default docker URL support.</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/DotNetLau/Teqit.Extensions.Seq</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>1.0.3</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

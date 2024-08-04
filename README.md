@@ -16,6 +16,10 @@ By running the bare minimum of this package the log events will be sent as `verb
 
 ## Changelog
 
+1.1.0 Add default docker URL support.
+
+1.0.3 Update readme and summary and add project URL.
+
 1.0.2 Add apikey support and add summary for extension method
 
 1.0.1 Add readme
@@ -61,7 +65,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSeq(apiKey: "01234567890123456789");
 ```
 
-Add the following to your built `WebApplication` object if you want request logging to appear in SEQ (this requires the Serilog.AspNetCore package to be installed):
+Add the following to your built `WebApplication` object if you want request logging to appear in SEQ:
 
 ```c#
 using Serilog;
@@ -72,4 +76,13 @@ builder.Services.AddSeq();
 
 var app = builder.Build();
 app.UseSerilogRequestLogging();
+```
+
+If you have SEQ running as a Docker container and want to use the default host.docker.internal URL, then specify it like so:
+
+```c#
+using Teqit.Extensions.Seq;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSeq(useDefaultDockerContainerUrl: true);
 ```

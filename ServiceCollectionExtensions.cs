@@ -13,12 +13,15 @@ public static class ServiceCollectionExtensions
     /// <param name="url">The address and port on which the SEQ instance runs.</param>
     /// <param name="level">The minimum logging level.</param>
     /// <param name="apiKey">The API key.</param>
+    /// <param name="useDefaultDockerContainerUrl">Define true to use the host.internal.docker URL.</param>
     /// <returns>IServiceCollection</returns>
-    public static IServiceCollection AddSeq(this IServiceCollection services, string url = "http://localhost:5341", LogEventLevel level = LogEventLevel.Verbose, string? apiKey = null)
+    public static IServiceCollection AddSeq(this IServiceCollection services, string url = "http://localhost:5341", LogEventLevel level = LogEventLevel.Verbose, string? apiKey = null, bool useDefaultDockerContainerUrl = false)
     {
+        string seqUrl = useDefaultDockerContainerUrl ? "http://host.docker.internal:5341" : url;
+
         services.AddSerilog((logBuilder) =>
         {
-            logBuilder.WriteTo.Seq(url, level, apiKey: apiKey)
+            logBuilder.WriteTo.Seq(seqUrl, level, apiKey: apiKey)
                 .Enrich.WithEnvironmentName()
                 .Enrich.WithEnvironmentUserName()
                 .Enrich.WithMachineName()
