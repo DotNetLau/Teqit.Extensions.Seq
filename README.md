@@ -16,6 +16,12 @@ By running the bare minimum of this package the log events will be sent as `verb
 
 ## Changelog
 
+3.0.0 
+- Convert to .NET Standard project 
+- Support .NET 10.
+
+2.0.0 Add log to file support.
+
 1.1.0 Add default docker URL support.
 
 1.0.3 Update readme and summary and add project URL.
