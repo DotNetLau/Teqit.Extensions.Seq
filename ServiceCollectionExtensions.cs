@@ -15,6 +15,11 @@ namespace Teqit.Extensions.Seq
         /// <param name="level">The minimum logging level.</param>
         /// <param name="apiKey">The API key.</param>
         /// <param name="useDefaultDockerContainerUrl">Define true to use the host.internal.docker URL.</param>
+        /// <param name="filePath">The path for the rolling buffer file.</param>
+        /// <param name="flushToDiskIntervalInSeconds">Amount of seconds before flushing logs to disk.</param>
+        /// <param name="rollingInterval">The interval before creating a new rolling file.</param>
+        /// <param name="roleOnFileSizeLimit">The size limit in MB before a creating new rolling fire.</param>
+        /// <param name="retainedFileCountLimit">The amount of rolling files to retain in total.</param>
         /// <returns>IServiceCollection</returns>
         public static IServiceCollection AddSeq(this IServiceCollection services,
             string url = "http://localhost:5341",
@@ -28,7 +33,7 @@ namespace Teqit.Extensions.Seq
             int retainedFileCountLimit = 31
         )
         {
-            string seqUrl = useDefaultDockerContainerUrl ? "http://host.docker.internal:5341" : url;
+            var seqUrl = useDefaultDockerContainerUrl ? "http://host.docker.internal:5341" : url;
 
             services.AddSerilog((logBuilder) =>
             {

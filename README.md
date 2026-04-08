@@ -16,6 +16,10 @@ By running the bare minimum of this package the log events will be sent as `verb
 
 ## Changelog
 
+3.1.0
+- Upgrade packages
+- Fix missing extensions summary params
+
 3.0.0 
 - Convert to .NET Standard project 
 - Support .NET 10.
