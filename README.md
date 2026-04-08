@@ -1,5 +1,7 @@
 # Microsoft Dependency Injection extensions for SEQ
 
+This project produces a NuGet URL. Visit at [https://www.nuget.org/packages/Teqit.Extensions.Seq/](https://www.nuget.org/packages/Teqit.Extensions.Seq/).
+
 Use this package during your start-up to write logging to SEQ.
 
 It comes with a lot of enrichments by default:
