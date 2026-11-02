@@ -18,6 +18,15 @@ By running the bare minimum of this package the log events will be sent as `verb
 
 ## Changelog
 
+3.2.0
+- Fix: `level` now also sets the logger's minimum level. Before, Debug and Verbose events were dropped because the
+  Serilog minimum stayed at Information. The default (Verbose) is now effective: pass
+  `level: LogEventLevel.Information` for the previous volume.
+- Add the `Application` property (from IHostEnvironment.ApplicationName) and `Enrich.FromLogContext()`.
+- Add `ReadFrom.Services`, so ILogEventEnricher/ILogEventSink registered in DI are picked up.
+- Add optional `writeToProviders` (forward events to other ILoggerProviders such as OpenTelemetry) and `configure`
+  (extra Serilog configuration, e.g. MinimumLevel.Override).
+
 3.1.0
 - Upgrade packages
 - Fix missing extensions summary params
@@ -97,4 +106,28 @@ using Teqit.Extensions.Seq;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSeq(useDefaultDockerContainerUrl: true);
+```
+
+## Log levels
+
+`level` is the only level filter. Because Serilog replaces the `ILoggerFactory`, the `Logging:LogLevel` section of
+appsettings does not apply to these events. Use `configure` for per-category overrides:
+
+```c#
+builder.Services.AddSeq(
+    level: LogEventLevel.Debug,
+    configure: cfg => cfg.MinimumLevel.Override("Microsoft.AspNetCore.Server.Kestrel", LogEventLevel.Information));
+```
+
+## OpenTelemetry / other providers
+
+By default Serilog replaces the logging pipeline, so other `ILoggerProvider`s (for example OpenTelemetry) receive no
+events. Pass `writeToProviders: true` to forward events to them as well. The host's built-in console provider then
+prints in addition to this package's Console sink, so call `builder.Logging.ClearProviders()` *before* registering
+your own providers:
+
+```c#
+builder.Logging.ClearProviders();
+builder.Logging.AddOpenTelemetry(/* ... */);
+builder.Services.AddSeq(writeToProviders: true);
 ```

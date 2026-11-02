@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Teqit.Extensions.Seq.csproj" />
+  <Project Path="Teqit.Extensions.Seq.Tests/Teqit.Extensions.Seq.Tests.csproj" />
+</Solution>
